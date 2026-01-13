@@ -1,49 +1,54 @@
-function heroSection() {
-    const section = document.createElement("section");
-    section.innerHTML = `
-        <section id="hero" class="section hero">
-            <div class="container hero-content">
-                <h1>Book Your Table Easily</h1>
-                <p>
-                    Experience the best dining with an easy and fast reservation
-                    system.
-                </p>
-                <a href="#/booking" class="btn">Book Now</a>
-            </div>
-        </section>`;
-    return section;
+function home(){
+    return `
+        <h2>Home Page</h2>
+    `;
 }
 
-function homePage() {
-    const page = document.createElement("div");
-    page.appendChild(heroSection());
-    return page;
+function kampanye(){
+    return `
+        <h2>Kampanye Page</h2>
+    `;
 }
 
-function errorPage() {
-    const page = document.createElement("div");
-    page.innerHTML = `
-            <div class="container error">
-                <h2>Error 404 Not Found</h2>
-            </div>`;
-    return page;
+function donasi(){
+    return `
+        <h2>Donasi Page</h2>
+    `;
 }
 
-const route = {
-    "/": homePage(),
+function relawan(){
+    return `
+        <h2>Relawan Page</h2>
+    `;
+}
+
+function about(){
+    return `
+        <h2>About Page</h2>
+    `;
+}
+
+function admin(){
+    return `
+        <h2>Admin Page</h2>
+    `;
+}
+
+const routes = {
+    '/' : home(),
+    '/kampanye' : kampanye(),
+    '/donasi' : donasi(),
+    '/relawan' : relawan(),
+    '/about' : about(),
+    '/admin' : admin(),
 };
 
-function router() {
+function router(){
     const hash = window.location.hash || "#/";
-    const path = hash.replace("#/", "/");
-    const app = document.getElementById("app");
-    app.innerHTML = "";
+    const path = hash.replace("#", "");
 
-    if (route[path]) {
-        app.appendChild(route[path]);
-    } else {
-        app.appendChild(errorPage());
-    }
+    document.getElementById("app").innerHTML =
+        routes[path] || "<h2>404 Not Found</h2>";
 }
 
 window.addEventListener("load", router);
