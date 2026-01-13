@@ -1,6 +1,17 @@
 function home(){
     return `
-        <h2>Home Page</h2>
+        <section class="home">
+            <img src="./assets/fotobanjir.png" alt="fotobanjir" class="hero-img">
+
+            <div class="home-content">
+                <h1>BANYAK SAUDARA KITA KEHILANGAN TEMPAT TINGGAL AKIBAT BENCANA</h1>
+                <p>
+                    Mari bantu mereka dengan berdonasi sekecil apapun.
+                    Donasimu sangat berarti.
+                </p>
+                <a href="#/donasi" class="btn">Donasi Sekarang</a>
+            </div>
+        </section>
     `;
 }
 
