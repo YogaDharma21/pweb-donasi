@@ -169,6 +169,77 @@ body {
     font-size: 1rem;
 }
 
+/* ini css kampanye nya */ 
+.judul {
+    text-align: center;
+    margin-top: 20px;
+}
+.kampanye1 {
+    display: flex;
+    align-items: center;
+    gap: 30px;           
+    margin: 5px;
+    padding: 25px;
+}
+
+.kampanye1 img {
+    width: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.kampanye-pertama p {
+    text-align: justify;
+    color: black;
+}
+
+.kampanye2 {
+    display: flex;
+    align-items: center;
+    gap: 30px;           
+    margin: 5px;
+    padding: 25px;
+}
+
+.kampanye2 img {
+    width: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.kampanye-kedua p {
+    text-align: justify;
+    color: black;
+}
+
+.kampanye3 {
+    display: flex;
+    align-items: center;
+    gap: 30px;           
+    margin: 5px;
+    padding: 25px;
+}
+
+.kampanye3 img {
+    width: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.kampanye-ketiga p {
+    text-align: justify;
+    color: black;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #27ae60;
+    color: white;
+    border-radius: 6px;
+}
+
 /* ============================================
    CAMPAIGN SECTION
    ============================================ */
