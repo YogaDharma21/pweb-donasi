@@ -20,6 +20,58 @@ function home(){
                     jangkauan kebaikan bagi masyarakat yang membutuhkan.
                 </p>
                 <a href="#/donasi" class="btn">Donasi Sekarang</a>
+
+            </div>
+
+            <h2 class="judul-statistik">Statistik Donasi Yang Kami Kelola</h2>
+            <div class="statistik">
+                <div class="card">
+                    <h2 id="donasi">1.000.000.000</h2>
+                    <p>Total Donasi Yang Diterima (Rp)</p>
+                </div>
+                <div class="card">
+                    <h2 id="donatur">6.767</h2>
+                    <p>Jumlah Donatur</p>
+                </div>
+                <div class="card">
+                    <h2 id="kampanye">3</h2>
+                    <p>Total Kampanye Aktif</p>
+                </div>
+                <div class="card">
+                    <h2 id="penerima">10.000</h2>
+                    <p>Total Penerima Manfaat</p>
+                </div>
+            </div>
+
+            <h2 class="judul-container">
+                Menampilkan 3 Kampanye Yang Sedang Aktif
+            </h2>
+
+            <div class="container">
+                <div class="kampanye-card">
+                    <img src="./assets/fotodonasi1.jpg" alt="fotodonasi1">
+                        <div class="kampanye-details">
+                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
+                            <p>Lebih dari 166 ribu rumah rusak, 339 ribu warga 
+                            kehilangan tempat tinggal. Ayo bantu hadirkan rumah</p>
+                        </div>
+                </div>
+                
+                <div class="kampanye-card">
+                    <img src="./assets/fotodonasi2.jpeg" alt="fotodonasi2">
+                        <div class="kampanye-details">
+                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
+                            <p>Ribuan rumah terendam, 2.393 KK terdampak. Ayo bantu segera!</p>
+                        </div>
+                </div>
+
+                <div class="kampanye-card">
+                    <img src="./assets/fotodonasi3.jpeg" alt="fotodonasi3">
+                        <div class="kampanye-details">
+                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
+                            <p>Puluhun ribu warga terdampak banjir yang melanda di Sumatra. Ayo bantu segera!!</p>
+                        </div>
+                </div>
             </div>
         </section>
     `;

@@ -169,6 +169,66 @@ body {
     font-size: 1rem;
 }
 
+.judul-statistik {
+    text-align: center;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.statistik {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card{
+    width: 240px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.judul-container {
+    margin-top: 25px;
+    text-align: center;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}  
+
+.kampanye-card {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kampanye-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.kampanye-details {
+    padding: 16px;
+}
+
+.kampanye-details p {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: black;
+}
 /* ini css kampanye nya */ 
 .judul {
     text-align: center;
@@ -201,6 +261,7 @@ body {
     padding: 25px;
 }
 
+
 .kampanye2 img {
     width: 450px;
     border-radius: 10px;
@@ -219,6 +280,7 @@ body {
     margin: 5px;
     padding: 25px;
 }
+
 
 .kampanye3 img {
     width: 450px;
