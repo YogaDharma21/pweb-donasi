@@ -1,3 +1,7 @@
+// ============================================
+// PAGE FUNCTIONS
+// ============================================
+
 function home(){
     return `
         <section class="home">
@@ -144,44 +148,166 @@ function kampanye(){
 
 function donasi(){
     return `
-        <h2>Donasi Page</h2>
+        <div class="form-container">
+            <h1 class="section-title">Form Donasi</h1>
+            <div id="successMessage"></div>
+            <form id="donationForm">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" id="name" required>
+                    <div class="error" id="nameError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                    <div class="error" id="emailError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Nominal (Rp)</label>
+                    <input type="number" id="amount" min="10000" required>
+                    <div class="error" id="amountError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Kampanye</label>
+                    <select id="campaign" required>
+                        ${getCampaigns().map(c => `<option value="${c.id}">${c.title}</option>`).join('')}
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Donasi Sekarang</button>
+            </form>
+        </div>
     `;
 }
 
 function relawan(){
     return `
-        <h2>Relawan Page</h2>
+        <div class="form-container">
+            <h1 class="section-title">Daftar Relawan</h1>
+            <div id="volunteerSuccessMessage"></div>
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="volName" required>
+                    <div class="error" id="volNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="volEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Keahlian</label>
+                    <textarea id="volSkill"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Daftar Relawan</button>
+            </form>
+        </div>
     `;
 }
 
 function about(){
     return `
-        <h2>About Page</h2>
+        <section class="about-content">
+            <h2>Tentang Kami</h2>
+            <p>"Di [Nama Website], kami percaya bahwa tidak ada tindakan kebaikan yang terlalu kecil untuk menciptakan perubahan besar bagi dunia. 
+                Sebagai wadah berbagi yang berbasis empati, kami menghubungkan para dermawan dengan berbagai inisiatif kemanusiaan,
+                mulai dari pendidikan hingga kesehatan, guna memberikan harapan baru dan senyuman bagi mereka yang sedang berjuang melewati masa sulit."</p>
+        </section>
     `;
 }
-
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
 function admin(){
     return `
         <h2>Admin Page</h2>
     `;
 }
 
+function getCampaigns(){
+    return [
+        { id: 1, title: 'Banjir Sumatra' },
+        { id: 2, title: 'Banjir Sibolga' },
+        { id: 3, title: 'Bencana Alam Sumatra' }
+    ];
+}
+
+// ============================================
+// ROUTING
+// ============================================
+
 const routes = {
-    '/' : home(),
-    '/kampanye' : kampanye(),
-    '/donasi' : donasi(),
-    '/relawan' : relawan(),
-    '/about' : about(),
-    '/admin' : admin(),
+    '/' : home,
+    '/kampanye' : kampanye,
+    '/donasi' : donasi,
+    '/relawan' : relawan,
+    '/about' : about,
+    '/admin' : admin,
 };
 
 function router(){
     const hash = window.location.hash || "#/";
     const path = hash.replace("#", "");
+    
+    const routeFunction = routes[path];
+    const content = routeFunction ? routeFunction() : "<h2>404 Not Found</h2>";
 
-    document.getElementById("app").innerHTML =
-        routes[path] || "<h2>404 Not Found</h2>";
+    document.getElementById("app").innerHTML = content;
+    
+    // Setup form listeners setelah content di-render
+    if(path === '/donasi'){
+        setupDonationForm();
+    } else if(path === '/relawan'){
+        setupVolunteerForm();
+    }
 }
+
+// ============================================
+// FORM HANDLERS
+// ============================================
+
+function setupDonationForm(){
+    const form = document.getElementById('donationForm');
+    if(form){
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const amount = document.getElementById('amount').value;
+            
+            if(name && email && amount){
+                const successMsg = document.getElementById('successMessage');
+                successMsg.innerHTML = `<div class="success">Terima kasih atas donasi Anda sebesar Rp ${parseInt(amount).toLocaleString('id-ID')}</div>`;
+                form.reset();
+                setTimeout(() => {
+                    successMsg.innerHTML = '';
+                }, 3000);
+            }
+        });
+    }
+}
+
+function setupVolunteerForm(){
+    const form = document.getElementById('volunteerForm');
+    if(form){
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            const name = document.getElementById('volName').value;
+            
+            if(name){
+                const successMsg = document.getElementById('volunteerSuccessMessage');
+                successMsg.innerHTML = `<div class="success">Terima kasih telah mendaftar sebagai relawan</div>`;
+                form.reset();
+                setTimeout(() => {
+                    successMsg.innerHTML = '';
+                }, 3000);
+            }
+        });
+    }
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
 
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
