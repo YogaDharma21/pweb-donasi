@@ -569,6 +569,8 @@ table {
     margin-top: 1rem;
     background: var(--white);
     box-shadow: var(--shadow);
+}
+
 th,
 td {
     padding: 1rem;
@@ -620,7 +622,7 @@ tr:hover {
 
 @media (max-width: 768px) {
     .navbar-items {
-        display: none;
+        display: flex;
     }
 
     .hero-img {
@@ -629,7 +631,6 @@ tr:hover {
 
     .home-content h1 {
         font-size: 1.8rem;
-    }
     }
 
     .stats-grid {
