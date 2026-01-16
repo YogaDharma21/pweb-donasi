@@ -29,13 +29,35 @@ function donasi(){
 
 function relawan(){
     return `
-        <h2>Relawan Page</h2>
+        <div class="form-container">
+            <h1 class="section-title">Daftar Relawan</h1>
+            <div id="volunteerSuccessMessage"></div>
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="volName" required>
+                    <div class="error" id="volNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="volEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Keahlian</label>
+                    <textarea id="volSkill"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Daftar Relawan</button>
+            </form>
+        </div>
     `;
 }
 
 function about(){
     return `
-        <h2>About Page</h2>
+        <section class="about-content">
+            <h2>Tentang Kami</h2>
+            <p>Dompet Dhuafa adalah organisasi nirlaba...</p>
+        </section>
     `;
 }
 
