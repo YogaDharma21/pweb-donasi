@@ -12,12 +12,12 @@ function home(){
                 <p>
                     Mari bantu mereka dengan berdonasi sekecil apapun.
                     Donasimu sangat berarti.
-                    Web Donasi adalah platform berbasis website yang dibuat untuk memudahkan 
+                    Web sobatpdeuli adalah platform berbasis website yang dibuat untuk memudahkan 
                     masyarakat dalam memberikan bantuan sosial dan kemanusiaan secara online. 
                     Melalui web ini pengguna dapat berdonasi dengan mudah, cepat, dan aman 
                     untuk berbagai program bantuan yang membutuhkan.
 
-                    Web Donasi menyediakan informasi transparan mengenai tujuan penggalangan 
+                    Web sobatpdeuli menyediakan informasi transparan mengenai tujuan penggalangan 
                     dana, perkembangan donasi, serta dampak yang dihasilkan dari setiap 
                     kontribusi. Dengan memanfaatkan teknologi digital, web ini diharapkan 
                     dapat menjadi sarana untuk menumbuhkan kepedulian sosial dan memperluas 
@@ -30,11 +30,11 @@ function home(){
             <h2 class="judul-statistik">Statistik Donasi Yang Kami Kelola</h2>
             <div class="statistik">
                 <div class="card">
-                    <h2 id="donasi">1.000.000.000</h2>
+                    <h2 id="donasi">1.000.000.000+</h2>
                     <p>Total Donasi Yang Diterima (Rp)</p>
                 </div>
                 <div class="card">
-                    <h2 id="donatur">6.767</h2>
+                    <h2 id="donatur">6.767+</h2>
                     <p>Jumlah Donatur</p>
                 </div>
                 <div class="card">
@@ -42,7 +42,7 @@ function home(){
                     <p>Total Kampanye Aktif</p>
                 </div>
                 <div class="card">
-                    <h2 id="penerima">10.000</h2>
+                    <h2 id="penerima">10.000+</h2>
                     <p>Total Penerima Manfaat</p>
                 </div>
             </div>
@@ -206,17 +206,53 @@ function relawan(){
 
 function about(){
     return `
-        <section class="about-content">
+        <section class="aboutc">
             <h2>Tentang Kami</h2>
-            <p>"Di [Nama Website], kami percaya bahwa tidak ada tindakan kebaikan yang terlalu kecil untuk menciptakan perubahan besar bagi dunia. 
-                Sebagai wadah berbagi yang berbasis empati, kami menghubungkan para dermawan dengan berbagai inisiatif kemanusiaan,
-                mulai dari pendidikan hingga kesehatan, guna memberikan harapan baru dan senyuman bagi mereka yang sedang berjuang melewati masa sulit."</p>
+            <p>
+                SobatPeduli merupakan sebuah platform donasi digital yang bertujuan untuk memfasilitasi individu, 
+                komunitas, maupun organisasi dalam menggalang dan menyalurkan dana secara transparan dan bertanggung jawab. 
+                Platform ini memungkinkan para penggalang dana untuk menerima dukungan finansial dari para donatur melalui 
+                sistem pembayaran digital yang tersedia. Selain itu SobatPeduli menyediakan berbagai fitur pendukung untuk 
+                membantu proses penggalangan dana, pengelolaan kampanye donasi,guna menciptakan ekosistem donasi yang aman, 
+                mudah, dan terpercaya.Di sobatdonasi, kami percaya bahwa tidak ada tindakan kebaikan yang terlalu kecil untuk 
+                menciptakan perubahan besar bagi dunia. Sebagai wadah berbagi yang berbasis empati, kami menghubungkan para 
+                dermawan dengan berbagai inisiatif kemanusiaan,mulai dari pendidikan hingga kesehatan, guna memberikan harapan 
+                baru dan senyuman bagi mereka yang sedang berjuang melewati masa sulit.
+            </p>
+        </section>
+
+        <section class="kontak">
+            <div class="container">
+                <h2 class="kontak-title">Kontak Kami</h2>
+                <form class="kontak-form">
+                    <input type="text" id="name"placeholder="Nama Kamu" required />
+                    <input type="email" id="email"placeholder="Email" required />
+                    <textarea
+                        placeholder="Pesan"
+                        rows="5"
+                        required
+                    ></textarea>
+                    <button type="button" onclick="kontak()">Kirim  </button>
+                </form>
+                <p id="kntk"></p>
+            </div>
         </section>
     `;
 }
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
+function kontak() {
+    let Name = document.getElementById("name").value;
+    let Email = document.getElementById("email").value;
+    if (Name !== "" && Email !== "") {
+        document.getElementById("kntk").innerHTML =
+            "Terima kasih!! Pesan Anda Atas nama " +
+            Name +
+            " Dengan email " +
+            Email +
+            " pasti Akan Kami Baca";
+    }
+    kntk.classList.add("contk");
+}
+
 function admin(){
     return `
         <h2>Admin Page</h2>
