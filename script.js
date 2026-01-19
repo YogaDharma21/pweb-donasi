@@ -255,7 +255,49 @@ function kontak() {
 
 function admin(){
     return `
-        <h2>Admin Page</h2>
+        <h2 class="judul">DATA KAMPANYE AKTIF</h2>
+    
+        <button class="btncreate"onclick="createData()">Tambah Kampanye</button>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Nama Kampanye</th>
+                    <th>Jenis Bencana</th>
+                    <th>Lokasi Tujuan</th>
+                    <th>Total Donasi (Rp)</th>
+                    <th>Status Penyaluran</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Banjir Sumatra</td>
+                    <td>Banjir</td>
+                    <td>Sumatra</td>
+                    <td>500.000.000</td>
+                    <td>Sedang Diproses</td>
+                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                </tr>
+                <tr>
+                    <td>Banjir Sibolga</td>
+                    <td>Banjir</td>
+                    <td>Sibolga</td>
+                    <td>300.000.000</td>
+                    <td>Sedang Diproses</td>
+                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                </tr>
+                <tr>
+                    <td>Bencana Alam Sumatra</td>
+                    <td>Tanah Longsor</td>
+                    <td>Sumatra</td>
+                    <td>200.000.000</td>
+                    <td>Sedang Diproses</td>
+                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
     `;
 }
 
