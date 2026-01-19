@@ -1,4 +1,58 @@
 // ============================================
+// DONATION TRACKING (Session Only - No Database/LocalStorage)
+// ============================================
+let donationTracker = {
+    campaigns: {
+        1: { title: 'Banjir Sumatra', target: 1000000000, collected: 0 },
+        2: { title: 'Banjir Sibolga', target: 500000000, collected: 0 },
+        3: { title: 'Bencana Alam Sumatra', target: 300000000, collected: 0 }
+    },
+    donations: []
+};
+
+function addDonation(campaignId, amount) {
+    if (donationTracker.campaigns[campaignId]) {
+        donationTracker.campaigns[campaignId].collected += parseInt(amount);
+        donationTracker.donations.push({
+            campaignId: campaignId,
+            amount: parseInt(amount),
+            timestamp: new Date()
+        });
+        return true;
+    }
+    return false;
+}
+
+function getProgressPercentage(campaignId) {
+    const campaign = donationTracker.campaigns[campaignId];
+    if (campaign) {
+        return Math.min((campaign.collected / campaign.target) * 100, 100);
+    }
+    return 0;
+}
+
+function getProgressBar(campaignId) {
+    const percentage = getProgressPercentage(campaignId);
+    const collected = donationTracker.campaigns[campaignId].collected;
+    const target = donationTracker.campaigns[campaignId].target;
+    
+    return `
+        <div class="progress-container">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${percentage}%;"></div>
+                </div>
+            </div>
+            <div class="progress-info">
+                <span class="collected">Rp ${collected.toLocaleString('id-ID')}</span>
+                <span class="target">Target: Rp ${target.toLocaleString('id-ID')}</span>
+                <span class="percentage">${Math.round(percentage)}%</span>
+            </div>
+        </div>
+    `;
+}
+
+// ============================================
 // PAGE FUNCTIONS
 // ============================================
 
@@ -87,6 +141,8 @@ function kampanye(){
         <section class="kampanye1">
             <img src="./assets/fotodonasi1.jpg" alt="fotodonasi1">
             <div class="kampanye-pertama">
+                <h2>Banjir Sumatra</h2>
+                ${getProgressBar(1)}
                 <p>
                     Banjir yang melanda sejumlah wilayah di Pulau Sumatra terjadi akibat 
                     curah hujan tinggi yang berlangsung dalam waktu lama, diperparah oleh 
@@ -105,8 +161,10 @@ function kampanye(){
         </section>
 
         <section class="kampanye2">
-            <img src="./assets/fotodonasi2.jpeg" alt="fotodonasi1">
+            <img src="./assets/fotodonasi2.jpeg" alt="fotodonasi2">
             <div class="kampanye-kedua">
+                <h2>Banjir Sibolga</h2>
+                ${getProgressBar(2)}
                 <p>
                     Bencana banjir dan longsor terjadi akibat hujan deras sejak 24-25 November 2025. 
                     Bencana tersebut menyebabkan terputusnya akses keluar-masuk kota, pemadaman listrik, 
@@ -126,6 +184,8 @@ function kampanye(){
         <section class="kampanye3">
             <img src="./assets/fotodonasi3.jpeg" alt="fotodonasi3">
             <div class="kampanye-ketiga">
+                <h2>Bencana Alam Sumatra</h2>
+                ${getProgressBar(3)}
                 <p>
                     Warga di Pulau Sumatera yang terdampak banjir dan tanah longsor bergegas mengevakuasi 
                     penduduk yang terjebak dari perairan berlumpur yang menghancurkan rumah-rumah dan 
@@ -136,8 +196,7 @@ function kampanye(){
                     segera berupa makanan siap saji, air bersih, layanan kesehatan, serta dukungan psikososial 
                     untuk menjaga kondisi fisik dan mental selama masa darurat. Dukungan dan kepedulian masyarakat 
                     sangat dibutuhkan untuk membantu proses penyelamatan, pemulihan, serta pemenuhan kebutuhan dasar 
-                    para korban agar mereka dapat bangkit kembali dari dampak bencana.buatkan kalimat untuk 
-                    deskripsi kampanya donasi
+                    para korban agar mereka dapat bangkit kembali dari dampak bencana.
                 </p>
                 <a href="#/donasi" class="btn">Donasi Sekarang</a>
             </div>
@@ -351,11 +410,17 @@ function setupDonationForm(){
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const amount = document.getElementById('amount').value;
+            const campaign = document.getElementById('campaign').value;
             
-            if(name && email && amount){
+            if(name && email && amount && campaign){
+                // Add donation to tracker
+                addDonation(campaign, amount);
+                
                 const successMsg = document.getElementById('successMessage');
-                successMsg.innerHTML = `<div class="success">Terima kasih atas donasi Anda sebesar Rp ${parseInt(amount).toLocaleString('id-ID')}</div>`;
+                const campaignName = donationTracker.campaigns[campaign].title;
+                successMsg.innerHTML = `<div class="success">Terima kasih atas donasi Anda sebesar Rp ${parseInt(amount).toLocaleString('id-ID')} untuk kampanye ${campaignName}</div>`;
                 form.reset();
+                
                 setTimeout(() => {
                     successMsg.innerHTML = '';
                 }, 3000);
