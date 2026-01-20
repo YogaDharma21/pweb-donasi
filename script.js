@@ -1,6 +1,4 @@
-// ============================================
-// DONATION TRACKING (Session Only - No Database/LocalStorage)
-// ============================================
+
 let donationTracker = {
     campaigns: {
         1: { title: 'Banjir Sumatra', target: 1000000000, collected: 0 },
@@ -52,10 +50,6 @@ function getProgressBar(campaignId) {
     `;
 }
 
-// ============================================
-// PAGE FUNCTIONS
-// ============================================
-
 function home(){
     return `
         <section class="home">
@@ -106,32 +100,38 @@ function home(){
             </h2>
 
             <div class="container">
-                <div class="kampanye-card">
-                    <img src="./assets/fotodonasi1.jpg" alt="fotodonasi1">
-                        <div class="kampanye-details">
-                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
-                            <p>Lebih dari 166 ribu rumah rusak, 339 ribu warga 
-                            kehilangan tempat tinggal. Ayo bantu hadirkan rumah</p>
-                        </div>
-                </div>
-                
-                <div class="kampanye-card">
-                    <img src="./assets/fotodonasi2.jpeg" alt="fotodonasi2">
-                        <div class="kampanye-details">
-                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
-                            <p>Ribuan rumah terendam, 2.393 KK terdampak. Ayo bantu segera!</p>
-                        </div>
-                </div>
+                ${kampanyeCard(
+                    "./assets/fotodonasi1.jpg",
+                    "PRAY FOR SUMATRA!!",
+                    "Lebih dari 166 ribu rumah rusak, 339 ribu warga kehilangan tempat tinggal."
+                )}
 
-                <div class="kampanye-card">
-                    <img src="./assets/fotodonasi3.jpeg" alt="fotodonasi3">
-                        <div class="kampanye-details">
-                            <a href="#/kampanye" class="btn">PRAY FOR SUMATRA!!</a>
-                            <p>Puluhun ribu warga terdampak banjir yang melanda di Sumatra. Ayo bantu segera!!</p>
-                        </div>
-                </div>
+                ${kampanyeCard(
+                    "./assets/fotodonasi2.jpeg",
+                    "PRAY FOR SUMATRA!!",
+                    "Ribuan rumah terendam, 2.393 KK terdampak. Ayo bantu segera!"
+                )}
+
+                ${kampanyeCard(
+                    "./assets/fotodonasi2.jpeg",
+                    "PRAY FOR SUMATRA!!",
+                    "Ribuan rumah terendam, 2.393 KK terdampak. Ayo bantu segera!"
+                )}
             </div>
         </section>
+    `;
+}
+
+function kampanyeCard(img, title, description) {
+    return `
+        <div class="kampanye-card">
+            <img src="${img}" alt="${title}">
+            <div class="kampanye-details">
+                <h3>${title}</h3>
+                <a href="#/kampanye" class="btn">PRAY FOR SUMATRA</a>
+                <p>${description}</p>
+            </div>
+        </div>
     `;
 }
 
@@ -315,8 +315,9 @@ function kontak() {
 function admin(){
     return `
         <h2 class="judul">DATA KAMPANYE AKTIF</h2>
-    
-        <button class="btncreate"onclick="createData()">Tambah Kampanye</button>
+        <button onclick="logout()" class="btnlogout">Logout</button>
+        <a href="#/create" class="tkamp">Tambahkan Kampanye</a>
+
         <table class="admin-table">
             <thead>
                 <tr>
@@ -335,7 +336,7 @@ function admin(){
                     <td>Sumatra</td>
                     <td>500.000.000</td>
                     <td>Sedang Diproses</td>
-                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                    <td><a href="#/update" class="btnedit">Edit</a> <button onclick="hapusData()" class="btndelete">Hapus</button></td>
                 </tr>
                 <tr>
                     <td>Banjir Sibolga</td>
@@ -343,7 +344,7 @@ function admin(){
                     <td>Sibolga</td>
                     <td>300.000.000</td>
                     <td>Sedang Diproses</td>
-                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                    <td><a href="#/update" class="btnedit">Edit</a> <button onclick="hapusData()" class="btndelete">Hapus</button></td>
                 </tr>
                 <tr>
                     <td>Bencana Alam Sumatra</td>
@@ -351,13 +352,131 @@ function admin(){
                     <td>Sumatra</td>
                     <td>200.000.000</td>
                     <td>Sedang Diproses</td>
-                    <td><button class="btnedit">Edit</button> <button class="btndelete">Hapus</button></td>
+                    <td><a href="#/update" class="btnedit">Edit</a> <button onclick="hapusData()" class="btndelete">Hapus</button></td>
                 </tr>
                 <tr>
                 </tr>
             </tbody>
         </table>
     `;
+}
+
+function create(){
+    return `
+        <div class="form-container">
+            <h1 class="section-title">Menambahkan Data Kampanye</h1>
+            <form class="kontak-form">
+                    <label>Nama Kampanye</label>
+                    <input type="text" id="nama" required>
+                    
+                    <label>Jenis Bencana</label>
+                    <input type="text" id="jenis" required>
+                
+                    <label>Lokasi Tujuan</label>
+                    <input type="text" id="lokasi" required>
+            
+                    <label>Total Donasi</label>
+                    <input type="text" id="tujuan" required>
+                
+                    <label>Status Penyaluran</label>
+                    <select>
+                        <option value="">----</option>
+                        <option value="SedangDiproses">Sedang Diproses</option>
+                        <option value="SudahTersalurkan">Sudah Tersalurkan</option>
+                    </select>
+                <a href="#/admin" class="btncreate">Simpan Data Kampanye</a>
+            </form>
+        </div>
+    `;
+}
+
+function update(){
+    return `
+        <div class="form-container">
+            <h1 class="section-title">Edit Data Kampanye</h1>
+            
+            <form class="kontak-form">
+                    <label>Nama Kampanye</label>
+                    <input type="text" id="nama" required>
+            
+                    <label>Jenis Bencana</label>
+                    <input type="text" id="jenis" required>
+                   
+                    <label>Lokasi Tujuan</label>
+                    <input type="text" id="lokasi" required>
+            
+                    <label>Total Donasi</label>
+                    <input type="text" id="tujuan" required>
+                
+                    <label>Status Penyaluran</label>
+                    <select>
+                        <option value="s">----</option>
+                        <option value="SedangDiproses">Sedang Diproses</option>
+                        <option value="SudahTersalurkan">Sudah Tersalurkan</option>
+                    </select>
+                <a href="#/admin" class="btncreate">Update Data Kampanye</a>
+            </form>
+        </div>
+    `;
+}
+
+function hapusData() {
+    let yakin = confirm("Apakah kamu yakin ingin menghapus data ini?");
+    
+    if (yakin) {
+        alert("Data berhasil dihapus");
+    } else {
+        alert("Data Gagal Dihapus");
+    }
+}
+
+function login(){
+    return `
+        <div class="form-container">
+            <h1 class="section-title">Login Admin</h1>
+            <div id="loginError"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+        </div>
+    `;
+}
+
+function logout(){
+    localStorage.removeItem("login");
+    window.location.hash = "#/login";
+}
+
+
+function LoginForm(){
+    const form = document.getElementById("loginForm");
+    if(!form) return;
+
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if(username === "admin" && password === "admin123"){
+            localStorage.setItem("login", "true");
+            window.location.hash = "#/admin";
+        } else {
+            document.getElementById("loginError").innerHTML =
+                `<div class="error">Username atau Password salah</div>`;
+        }
+    });
 }
 
 function getCampaigns(){
@@ -368,10 +487,6 @@ function getCampaigns(){
     ];
 }
 
-// ============================================
-// ROUTING
-// ============================================
-
 const routes = {
     '/' : home,
     '/kampanye' : kampanye,
@@ -379,12 +494,23 @@ const routes = {
     '/relawan' : relawan,
     '/about' : about,
     '/admin' : admin,
+    '/create' : create,
+    '/update' : update,
+    '/login' : login,
 };
 
 function router(){
     const hash = window.location.hash || "#/";
     const path = hash.replace("#", "");
+    const login = localStorage.getItem("login");
     
+    if(
+        (path === "/admin" || path === "/create" || path === "/update") 
+        && !login
+    ){
+        window.location.hash = "#/login";
+        return;
+    }
     const routeFunction = routes[path];
     const content = routeFunction ? routeFunction() : "<h2>404 Not Found</h2>";
 
@@ -396,11 +522,10 @@ function router(){
     } else if(path === '/relawan'){
         setupVolunteerForm();
     }
+     else if(path === '/login'){
+        LoginForm();
+    }
 }
-
-// ============================================
-// FORM HANDLERS
-// ============================================
 
 function setupDonationForm(){
     const form = document.getElementById('donationForm');
@@ -413,7 +538,6 @@ function setupDonationForm(){
             const campaign = document.getElementById('campaign').value;
             
             if(name && email && amount && campaign){
-                // Add donation to tracker
                 addDonation(campaign, amount);
                 
                 const successMsg = document.getElementById('successMessage');
@@ -447,10 +571,6 @@ function setupVolunteerForm(){
         });
     }
 }
-
-// ============================================
-// EVENT LISTENERS
-// ============================================
 
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);

@@ -39,7 +39,8 @@ body {
 
 .btn,
 .btn-submit {
-    display: inline-block;
+    margin: 0 auto;
+    display: block;
     padding: 0.8rem 1.5rem;
     background: var(--primary);
     color: var(--white);
@@ -345,7 +346,8 @@ body {
 }
 
 .kontak-form input,
-.kontak-form textarea {
+.kontak-form textarea,
+.kontak-form select {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid #d1d5db;
@@ -406,7 +408,19 @@ body {
     cursor: pointer;
     font-size: 14px;
 }
+.btnlogout {
+    background-color: #020000;
+    margin-left: 5%;
+    color: white;
+    border: none;
+    padding: 12px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 .btnedit {
+    text-decoration: none;
     background-color: #201d1c;
     color: white;
     border: none;
@@ -416,7 +430,21 @@ body {
     font-size: 14px;
 }
 .btncreate {
-    margin-left: 5%;
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tkamp {
+    display: inline-block;
+    margin-left: 1%;
     background-color: #201d1c;
     color: white;
     border: none;
@@ -425,6 +453,7 @@ body {
     cursor: pointer;
     font-size: 14px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 /* ============================================
    CAMPAIGN SECTION
